@@ -1,56 +1,83 @@
-import React, { useEffect, useState } from "react";
-import './scss/app.scss';
-import gotMap from './resources/got-map.jpg';
-import gotLogo from './resources/got-logo.png';
-import houseStarkSigil from './resources/house-stark-sigil.png';
-import houseAlgoodSigil from './resources/house-algood.png';
-import { HouseList } from "./types";
+import React, { MouseEventHandler, useEffect, useState } from "react";
+import "./scss/app.scss";
+import gotMap from "./resources/got-map.jpg";
+import gotLogo from "./resources/got-logo.png";
+import houseAlgoodSigil from "./resources/house-algood.png";
+import { House, HouseSigil } from "./types";
+import { Sigil } from "./components/sigil";
+import { SideContainer } from "./components/side-container";
+
+const HOUSES: HouseSigil[] = [
+  {
+    url: "https://www.anapioficeandfire.com/api/houses/1",
+    position: {
+      top: "800px",
+      left: "400px",
+    },
+    image: houseAlgoodSigil,
+  },
+];
 
 function App() {
-  const [houseList, setHouseList] = useState<HouseList[]>([]);
+  const [houseList, setHouseList] = useState<House[]>();
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const [showSideContainer, setShowSideContainer] = useState<boolean>(false);
+  const [selectedHouse, setSelectedHouse] = useState<House>();
 
-  const openSideNav = () => {
+  const handleSideContainer = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    setShowSideContainer(true);
+    setSelectedHouse(
+      houseList?.find((house) => house.name === e.currentTarget.value)
+    );
+  };
 
-  }
+  const handleCloseSideContainer = () => {
+    setShowSideContainer(false);
+  };
 
-  const handleError = (errorMessage: string) => {
-    setErrorMessage(errorMessage);
-  }
+  const handleError = (error: string) => {
+    setErrorMessage(error);
+  };
 
   useEffect(() => {
-    fetch('https://www.anapioficeandfire.com/api/houses')
-      .then(response => response.json())
-      .then(response => setHouseList(response))
-      .catch(error => error && handleError(error))
-    return () => {
-
-    }
+    fetch("https://www.anapioficeandfire.com/api/houses")
+      .then((response) => response.json())
+      .then((response) => setHouseList(response))
+      .catch((error) => error && handleError(error));
   }, []);
 
   return (
     <div>
       {errorMessage ? (
         <p className="error"> {errorMessage} </p>
-      ) :
+      ) : (
         <div className="map-container">
           <img id="got-map" src={gotMap} alt="map" />
           <div className="map-body">
             <img id="got-logo" src={gotLogo} alt="logo" />
-            <div id="house-stark-sigil-container" className="img-container" >
-              <div className="img-shadow">
-                <input type="image" src={houseStarkSigil} alt="house-stark-sigil" onClick={openSideNav} />
-              </div>
-            </div>
-            <div id="house-algood-sigil-container" className="img-container" >
-              <div className="img-shadow">
-                <input type="image" src={houseAlgoodSigil} alt="house-algood-sigil" onClick={openSideNav} />
-              </div>
-            </div>
-            <div id="side-container">
-            </div>
+            {houseList?.map((house) => {
+              const houseFound = HOUSES.find((h) => h.url === house.url);
+              if (houseFound) {
+                return (
+                  <Sigil
+                    handleSideContainer={handleSideContainer}
+                    houseSigil={houseFound}
+                    houseName={house.name}
+                  />
+                );
+              }
+              return null;
+            })}
+            <SideContainer
+              showContainer={showSideContainer}
+              showHouse={selectedHouse}
+              handleCloseButton={handleCloseSideContainer}
+            />
           </div>
-        </div>}
+        </div>
+      )}
     </div>
   );
 }

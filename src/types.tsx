@@ -1,4 +1,4 @@
-export interface HouseList {
+export interface House {
   url: string;
   name: string;
   region: string;
@@ -15,4 +15,25 @@ export interface HouseList {
   ancestralWeapons: string[];
   cadetBranches: string[];
   swornMembers: string[];
+}
+
+export type HouseSigil = {
+  url: string,
+  position: {
+    top: string,
+    left: string
+  },
+  image: string;
+}
+
+export type SigilProps = {
+  handleSideContainer: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  houseSigil: HouseSigil;
+  houseName: string;
+};
+
+export type SideContainerProps = {
+  showContainer: boolean;
+  showHouse: House | undefined;
+  handleCloseButton: () => void;
 }

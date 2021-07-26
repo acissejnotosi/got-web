@@ -23,52 +23,60 @@
         left: 1000px;
       }
     }
+  }
+}
 
-    .img-container {
-      position: absolute;
-      display: block;
-      z-index: 3;
-      .img-shadow {
-        opacity: 0.9;
-        transition: box-shadow 0.25s;
-        width: $imgWidth;
-        height: $imgWidth + 10px;
-        border-bottom-left-radius: 100px;
-        border-bottom-right-radius: 100px;
-        input {
-          max-width: $imgWidth;
-          height: auto;
-        }
-      }
-      .img-shadow:hover {
-        opacity: 1;
-        box-shadow: 0 0 1em white;
-      }
-    }
+.button-sigil {
+  position: absolute;
+  z-index: 3;
+  width: $imgWidth + 5px;
+  height: $imgWidth + 20px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: $imgWidth $imgWidth + 10px;
+  margin: 0px;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  background: round;
+}
 
-    #house-stark-sigil-container {
-      top: 300px;
-      left: 600px;
-    }
+.house-name {
+  position: absolute;
+  z-index: 3;
+}
 
-    #house-algood-sigil-container {
-      top: 800px;
-      left: 400px;
-    }
+#side-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  opacity: 0.5;
+  height: 100%;
+  width: 300px;
+  background: #2f2f2f;
+  overflow-x: hidden;
+  padding: 20px;
+  -webkit-overflow-scrolling: touch;
+  z-index: 4;
+  transition: width 0.1s;
+
+  &close-btn {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  &close-btn:hover {
+    color: #f1f1f1;
   }
 
-  #side-container {
-    position: fixed;
+  &.close-btn {
+    position: absolute;
     top: 0;
-    right: 0;
-    opacity: 0.5;
-    height: 100%;
-    width: 300px;
-    background: #2f2f2f;
-    overflow-x: hidden;
-    padding: 20px;
-    -webkit-overflow-scrolling: touch;
-    z-index: 4;
-    transition: width 0.5s;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
   }
 }
