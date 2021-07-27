@@ -26,24 +26,35 @@
   }
 }
 
-.button-sigil {
+.sigil-container {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.button-sigil {
   z-index: 3;
-  width: $imgWidth + 5px;
-  height: $imgWidth + 20px;
-  background-color: transparent;
+  width: 50px;
+  height: 60px;
   background-repeat: no-repeat;
-  background-size: $imgWidth $imgWidth + 10px;
   margin: 0px;
   overflow: hidden;
   border: none;
   cursor: pointer;
   background: round;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
 }
 
 .house-name {
-  position: absolute;
   z-index: 3;
+  color: white;
+  background-color: black;
+  opacity: 0.7;
+  padding: 5px 10px 5px 10px;
 }
 
 #side-container {
@@ -51,30 +62,44 @@
   top: 0;
   right: 0;
   height: 100%;
-  width: 300px;
+  width: 400px;
   background: #2f2f2f;
-  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  box-shadow: 0 0 10px 0 rgb(0 0 0 / 70%);
   z-index: 4;
   transition: width 0.1s;
+  overflow: hidden;
+  opacity: 0.9;
+}
 
-  &close-btn {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  &close-btn:hover {
-    color: #f1f1f1;
-  }
+.close-btn {
+  left: 10px;
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  top: 10px;
+  opacity: 0.3;
+  transition: opacity 0.2s;
+  cursor: pointer;
+}
+.close-btn:hover {
+  color: #f1f1f1;
+}
 
-  &.close-btn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
+.side-content {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  padding: 50px 15px;
+  height: 100%;
+  color: white;
+}
+
+.side-box {
+  box-shadow: 0 2px 6px rgb(50 50 93 / 20%);
+  background-color: #fff;
+  padding: 10px;
+  color: #445d6e;
+  margin: 0 0 20px 0;
+  border-radius: 4px;
 }
