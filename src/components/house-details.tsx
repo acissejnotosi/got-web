@@ -1,33 +1,25 @@
 import { HouseComponentType } from '../types'
+import { DisplayDetailsList } from './display-details-list'
+import { DisplayDetailsText } from './display-details-text'
 
 export const HouseDetails = ({ houseDetails }: HouseComponentType) => (
   <div className='side-content'>
-    <h1>{houseDetails?.name}</h1>
+    <h1 className='side-content-main-title'>{houseDetails?.name}</h1>
     <div className='side-box'>
-      <h2>Region</h2>
-      <p>{houseDetails?.region}</p>
-      <h2>Coat Of Arms</h2>
-      <p>{houseDetails?.coatOfArms}</p>
-      <h2>Words</h2>
-      <p>{houseDetails?.words}</p>
-      <h2>Titles</h2>
-      <ul>
-        {houseDetails?.titles.map(title => (
-          <li>{title}</li>
-        ))}
-      </ul>
-      <h2>Seats</h2>
-      <ul>
-        {houseDetails?.seats.map(seat => (
-          <li>{seat}</li>
-        ))}
-      </ul>
-      <h2>Heir</h2>
-      <p>{houseDetails?.heir}</p>
-      <h2>Founded</h2>
-      <p>{houseDetails?.founded}</p>
-      <h2>Ancestral Weapons</h2>
-      <p>{houseDetails?.ancestralWeapons}</p>
+      <DisplayDetailsText detail={houseDetails?.region} title='Region' />
+      <DisplayDetailsText
+        detail={houseDetails?.coatOfArms}
+        title='Coat Of Arms'
+      />
+      <DisplayDetailsText detail={houseDetails?.words} title='Words' />
+      <DisplayDetailsList details={houseDetails?.titles} title='Titles' />
+      <DisplayDetailsList details={houseDetails?.seats} title='Seats' />
+      <DisplayDetailsText detail={houseDetails?.heir} title='Heir' />
+      <DisplayDetailsText detail={houseDetails?.founded} title='Founded' />
+      <DisplayDetailsList
+        details={houseDetails?.ancestralWeapons}
+        title='Ancestral Weapons'
+      />
     </div>
   </div>
 )

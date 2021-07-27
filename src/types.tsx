@@ -43,3 +43,13 @@ export type SideContainerProps = {
 export type HouseComponentType = {
   houseDetails: House | undefined
 }
+
+export type DisplayDetailsListType = {
+  details: string[] | undefined
+  title: string
+}
+
+export type DisplayDetailsTextType = {
+  detail: string | undefined
+  title: string
+}
