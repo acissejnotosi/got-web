@@ -6,7 +6,8 @@ export const Sigil = ({
   houseName,
 }: SigilProps) => (
   <div className="sigil-container">
-    <button
+
+     <button
       aria-label="Sigil button"
       type="button"
       className="button-sigil"
@@ -17,7 +18,7 @@ export const Sigil = ({
         top: houseSigil?.position.top,
         left: houseSigil?.position.left,
       }}
-    />
+    /> 
     <span
       className="house-name"
       style={{
