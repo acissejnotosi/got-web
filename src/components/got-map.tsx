@@ -1,23 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import '../scss/app.scss'
+import '../scss/components.scss'
 import { useHistory } from 'react-router-dom'
+import Loader from 'react-loader-spinner'
 import gotMap from '../resources/images/got-map.jpg'
 import gotLogo from '../resources/images/got-logo.png'
-import houseAlgoodSigil from '../resources/images/house-algood.png'
-import { House, HouseSigil } from '../types'
+import { House } from '../types'
 import { Sigil } from './sigil'
 import { SideContainer } from './side-container'
-
-const HOUSES: HouseSigil[] = [
-  {
-    url: 'https://www.anapioficeandfire.com/api/houses/1',
-    position: {
-      top: '800px',
-      left: '400px'
-    },
-    image: houseAlgoodSigil
-  }
-]
+import { HOUSES } from '../resources/constant'
 
 function GOTMap () {
   const [houseList, setHouseList] = useState<House[]>()
@@ -61,9 +51,7 @@ function GOTMap () {
 
   return (
     <div>
-      {errorMessage ? (
-        <p className='error'> {errorMessage} </p>
-      ) : (
+      {houseList ? (
         <div className='map-container'>
           <img id='got-map' src={gotMap} alt='map' />
           <div className='map-body'>
@@ -87,6 +75,10 @@ function GOTMap () {
               handleCloseButton={handleCloseSideContainer}
             />
           </div>
+        </div>
+      ) : (
+        <div id='loader'>
+          <Loader type='ThreeDots' color='#F2F2F2' height={100} width={100} />
         </div>
       )}
     </div>

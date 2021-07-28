@@ -1,7 +1,29 @@
 /* everything that is reusable – buttons, navbars, cards, and so on */
 
-@import "_base.scss";
-@import "_layout.scss";
+@font-face {
+  font-family: "MyWebFont";
+  src: url("../resources/fonts/Kameron-Regular.ttf") format("truetype");
+}
+
+body {
+  margin: 0;
+  font-family: "MyWebFont", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+    "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0d0d0d;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#loader {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 101;
+}
 
 .map-container {
   position: relative;
@@ -73,14 +95,20 @@
 
 .close-btn {
   left: 10px;
-  width: 25px;
-  height: 25px;
+  width: 26px;
+  height: 26px;
+  color: #0d0d0d;
   position: absolute;
   top: 10px;
   opacity: 0.3;
   transition: opacity 0.2s;
   cursor: pointer;
   z-index: 2;
+  padding: 3px 2px;
+  line-height: 8px;
+  font-size: 2em;
+  border: none;
+  background: transparent;
 }
 
 .close-btn:before {
